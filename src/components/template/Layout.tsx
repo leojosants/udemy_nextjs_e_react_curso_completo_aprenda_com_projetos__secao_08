@@ -6,6 +6,7 @@ import LateralMenu from './LateralMenu';
 export default function Layout(props: LayoutProps) {
     return (
         <div className={`
+            dark
             flex
             h-screen
             w-screen`}>

@@ -6,7 +6,11 @@ export default function LateralMenu() {
     return (
         <aside className='
             flex
-            flex-col'>
+            flex-col
+            bg-gray-200  
+            text-gray-700
+            dark:bg-gray-900
+            dark:text-gray-200'>
 
             <div className={`
                 flex 
@@ -44,8 +48,10 @@ export default function LateralMenu() {
                     onClick={() => console.log('logout')}
                     className={`
                         text-red-600
+                        dark:text-red-400
                         hover:bg-red-400
-                        hover:text-white` } />
+                        hover:text-white
+                        dark:hover:text-white`} />
             </ul>
         </aside>
     );
