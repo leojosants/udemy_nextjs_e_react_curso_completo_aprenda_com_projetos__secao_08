@@ -45,7 +45,7 @@ export default function LateralMenu() {
                     className={`
                         text-red-600
                         hover:bg-red-400
-                        hover:text-white`} />
+                        hover:text-white` } />
             </ul>
         </aside>
     );
