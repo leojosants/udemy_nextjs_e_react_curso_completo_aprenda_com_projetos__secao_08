@@ -2,29 +2,48 @@ import Link from 'next/link';
 import { ItemMenuProps } from '../interfaces/ItemMenuProps';
 
 export default function ItemMenu(props: ItemMenuProps) {
-    return (
-        <li className={`hover:bg-gray-100`}>
-            <Link href={props.url} legacyBehavior>
-                <a className={`
-                    flex 
-                    flex-col 
-                    justify-center 
-                    items-center
-                    h-20
-                    w-20`}>
+    function renderLink() {
+        return (
+            <a className={`
+                flex 
+                flex-col 
+                justify-center 
+                items-center
+                h-20
+                w-20
+                text-gray-600
+                ${props.className}`}>
 
-                    {props.icon}
+                {props.icon}
 
-                    <span className={`
+                <span className={`
                         text-xs
-                        font-light
-                        text-gray-600`}>
+                        font-light`}>
 
-                        {props.text}
+                    {props.text}
 
-                    </span>
-                </a>
-            </Link>
+                </span>
+            </a>
+        );
+    };
+
+    return (
+        <li
+            className={`
+                hover: bg-gray-100
+                cursor-pointer`}
+
+            onClick={props.onClick}>
+
+            {
+                props.url ? (
+                    <Link href={props.url} legacyBehavior>
+                        {renderLink()}
+                    </Link>
+                ) : (
+                    renderLink()
+                )
+            }
         </li>
     );
 };

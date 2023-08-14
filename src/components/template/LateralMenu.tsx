@@ -1,10 +1,13 @@
-import { IconHome, IconNotification, IconSettings } from '../icons';
+import { IconHome, IconLogout, IconNotification, IconSettings } from '../icons';
 import ItemMenu from './ItemMenu';
 import Logo from './Logo';
 
 export default function LateralMenu() {
     return (
-        <aside>
+        <aside className='
+            flex
+            flex-col'>
+
             <div className={`
                 flex 
                 flex-col
@@ -17,7 +20,7 @@ export default function LateralMenu() {
                 <Logo />
             </div>
 
-            <ul>
+            <ul className='flex-grow'>
                 <ItemMenu
                     url='/'
                     text='Início'
@@ -32,6 +35,17 @@ export default function LateralMenu() {
                     url='/notifications'
                     text='Notificações'
                     icon={IconNotification} />
+            </ul>
+
+            <ul>
+                <ItemMenu
+                    text='Sair'
+                    icon={IconLogout}
+                    onClick={() => console.log('logout')}
+                    className={`
+                        text-red-600
+                        hover:bg-red-400
+                        hover:text-white`} />
             </ul>
         </aside>
     );
