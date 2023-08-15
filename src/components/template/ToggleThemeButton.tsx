@@ -18,8 +18,9 @@ export default function ToggleThemeButton(props: ThemeToggleButtonProps) {
                         lg:w-24
                         h-8
                         p-1
-                        rounded-full`}>
-
+                        rounded-full
+                    `}
+                >
                     <div className={`
                         flex
                         items-center
@@ -28,8 +29,8 @@ export default function ToggleThemeButton(props: ThemeToggleButtonProps) {
                         text-yellow-600
                         w-6
                         h-6
-                        rounded-full`}>
-
+                        rounded-full
+                    `}>
                         {IconSun(4)}
                     </div>
 
@@ -38,16 +39,13 @@ export default function ToggleThemeButton(props: ThemeToggleButtonProps) {
                         lg:flex
                         items-center
                         ml-4
-                        text-white`}>
-
-                        <span className='text-sm'>
-                            Claro
-                        </span>
+                        text-white
+                    `}>
+                        <span className='text-sm'>Claro</span>
                     </div>
                 </div>
             ) : (
-                <div
-                    onClick={props.toggleTheme}
+                <div onClick={props.toggleTheme}
                     className={`
                         hidden
                         sm:flex
@@ -61,18 +59,18 @@ export default function ToggleThemeButton(props: ThemeToggleButtonProps) {
                         lg:w-24
                         h-8
                         p-1
-                        rounded-full`}>
+                        rounded-full
+                    `}
+                >
 
                     <div className={`
                         hidden
                         lg:flex
                         items-center
                         mr-2
-                        text-gray-300`}>
-
-                        <span className='text-sm'>
-                            Escuro
-                        </span>
+                        text-gray-300
+                    `}>
+                        <span className='text-sm'>Escuro</span>
                     </div>
 
                     <div className={`
@@ -83,8 +81,8 @@ export default function ToggleThemeButton(props: ThemeToggleButtonProps) {
                         text-yellow-300
                         w-6
                         h-6
-                        rounded-full`}>
-
+                        rounded-full
+                    `}>
                         {IconMoon(4)}
                     </div>
                 </div>

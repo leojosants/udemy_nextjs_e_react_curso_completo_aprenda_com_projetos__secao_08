@@ -12,14 +12,8 @@ export function AppProvider(props: any) {
     };
 
     return (
-        <AppContext.Provider
-            value={{
-                theme,
-                changeTheme
-            }}>
-
+        <AppContext.Provider value={{ theme, changeTheme }}>
             {props.children}
-
         </AppContext.Provider>
     );
 };

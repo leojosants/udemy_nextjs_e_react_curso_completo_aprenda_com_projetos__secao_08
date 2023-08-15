@@ -9,10 +9,11 @@ export default function Layout(props: LayoutProps) {
 
     return (
         <div className={`
-            ${theme}
+            ${theme} 
             flex
             h-screen
-            w-screen`}>
+            w-screen
+        `}>
 
             <LateralMenu />
 
@@ -22,11 +23,12 @@ export default function Layout(props: LayoutProps) {
                 w-full
                 p-7
                 bg-gray-300
-                dark:bg-gray-800`}>
-
+                dark:bg-gray-800
+            `}>
                 <Header
                     title={props.title}
-                    subtitle={props.subtitle} />
+                    subtitle={props.subtitle}
+                />
 
                 <Content>
                     {props.children}

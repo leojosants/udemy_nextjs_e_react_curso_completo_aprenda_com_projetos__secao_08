@@ -10,16 +10,20 @@ export default function LateralMenu() {
             bg-gray-200  
             text-gray-700
             dark:bg-gray-900
-            dark:text-gray-200'>
+            dark:text-gray-200
+        '>
 
             <div className={`
                 flex 
                 flex-col
                 items-center
                 justify-center
-                bg-gradient-to-r from-indigo-500 to-purple-800
+                bg-gradient-to-r
+                from-indigo-500
+                to-purple-800
                 h-20
-                w-20`}>
+                w-20
+            `}>
 
                 <Logo />
             </div>
@@ -51,7 +55,9 @@ export default function LateralMenu() {
                         dark:text-red-400
                         hover:bg-red-400
                         hover:text-white
-                        dark:hover:text-white`} />
+                        dark:hover:text-white
+                    `}
+                />
             </ul>
         </aside>
     );

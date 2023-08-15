@@ -7,9 +7,7 @@ export default function AuthInput(props: AuthInputProps) {
             : (
                 <div className='flex flex-col mt-4'>
                     <label>
-                        {
-                            props.label
-                        }
+                        {props.label}
                     </label>
 
                     <input

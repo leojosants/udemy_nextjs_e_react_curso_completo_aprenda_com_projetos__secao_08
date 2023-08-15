@@ -4,10 +4,9 @@ export default function Home() {
   return (
     <Layout
       title="Página Inicial"
-      subtitle="Estamos contruindo um template Admin!">
-
+      subtitle="Estamos contruindo um template Admin!"
+    >
       <h3>Conteúdo</h3>
-
     </Layout>
   )
 }

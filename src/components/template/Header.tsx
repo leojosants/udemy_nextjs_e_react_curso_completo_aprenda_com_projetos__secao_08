@@ -16,13 +16,17 @@ export default function Header(props: HeaderProps) {
                 className={`
                     flex
                     flex-grow
-                    justify-end`}>
+                    justify-end
+                `}
+            >
 
                 {
-                    changeTheme && (
+                    changeTheme &&
+                    (
                         <ButtonChangeTheme
                             theme={theme ?? ''}
-                            toggleTheme={changeTheme} />
+                            toggleTheme={changeTheme}
+                        />
                     )
                 }
             </div>

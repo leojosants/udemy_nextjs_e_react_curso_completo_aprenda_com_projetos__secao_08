@@ -1,17 +1,26 @@
 import { useState } from 'react';
 import AuthInput from '../components/auth/AuthInput';
-import { IconGoogle } from '../components/icons';
+import { IconGoogle, IconWarning } from '../components/icons';
 
 export default function Authentication() {
+    const [error, setError] = useState(null);
     const [modo, setModo] = useState<'login' | 'register'>('login');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    function showError(msg: any, timeInSeconds = 5) {
+        setError(msg);
+        setTimeout(() => setError(null), timeInSeconds * 1000);
+
+    };
+
     function submit() {
         if (modo === 'login') {
             console.log('login');
+            showError('Ocorreu um erro no login!');
         } else {
             console.log('cadastrar');
+            showError('Ocorreu um erro no cadastro');
         }
     };
 
@@ -22,19 +31,16 @@ export default function Authentication() {
             items-center
             justify-center
         '>
-
             <div className='
                 hidden
                 md:block
                 md:w-1/2
                 lg:w-2/3
             '>
-                <img src='https://source.unsplash.com/random'
+                <img
+                    src='https://source.unsplash.com/random'
                     alt='Imagem da Tela de Autenticação'
-                    className='
-                        h-screen
-                        w-full
-                        object-cover'
+                    className='h-screen w-full object-cover'
                 />
             </div>
 
@@ -44,17 +50,41 @@ export default function Authentication() {
                 md:w-1/2
                 lg:w-1/3
             '>
-
                 <h1 className={`
                     text-3xl
                     font-bold
                     mb-5
                 `}>
-
-                    {modo === 'login'
-                        ? 'Entre com a Sua Conta'
-                        : 'Cadastre-se na Plataforma'}
+                    {
+                        modo === 'login'
+                            ? 'Entre com a Sua Conta'
+                            : 'Cadastre-se na Plataforma'
+                    }
                 </h1>
+
+                {
+                    error
+                        ? (
+                            <div className={`
+                                flex
+                                items-center
+                                bg-red-400
+                                text-white
+                                py-3
+                                px-5
+                                my-2
+                                border
+                                border-red-700
+                                rounded-lg
+                            `}>
+
+                                {IconWarning()}
+
+                                <span className='ml-3'>{error}</span>
+                            </div>
+                        )
+                        : false
+                }
 
                 <AuthInput
                     label='E-mail'
@@ -82,12 +112,13 @@ export default function Authentication() {
                         px-4
                         py-3
                         mt-6
-                    `}>
-
-                    {modo === 'login'
-                        ? 'Entrar'
-                        : 'Cadastrar'}
-
+                    `}
+                >
+                    {
+                        modo === 'login'
+                            ? 'Entrar'
+                            : 'Cadastrar'
+                    }
                 </button>
 
                 <hr className={`
@@ -98,6 +129,9 @@ export default function Authentication() {
 
                 <button onClick={submit}
                     className={`
+                        flex
+                        items-center
+                        justify-center
                         w-full
                         bg-red-500
                         hover:bg-red-400
@@ -108,38 +142,53 @@ export default function Authentication() {
                     `}
                 >
 
-                    {IconGoogle(3)}
+                    {IconGoogle()}
 
                     Entrar com Google
                 </button>
 
-                {modo === 'login'
-                    ? (
-                        <p className='mt-8 text-center'>
-                            Novo por aqui?
-                            <a onClick={() => setModo('register')}
-                                className={`
+                {
+                    modo === 'login'
+                        ? (
+                            <p className='
+                                mt-8
+                                text-center
+                            '>
+
+                                Novo por aqui? &nbsp;
+
+                                <a onClick={() => setModo('register')}
+                                    className={`
                                         text-blue-500
+                                        hover:text-blue-700
+                                        font-semibold
+                                        cursor-pointer`}
+                                >
+                                    Crie uma Conta Gratuitamente.
+                                </a>
+                            </p>
+                        )
+                        : (
+                            <p className='
+                                mt-8
+                                text-center
+                            '>
+
+                                Já faz parte da nossa comunidade? &nbsp;
+
+                                <a onClick={() => setModo('login')}
+                                    className={`
+                                        text-blue-500 
                                         hover:text-blue-700
                                         font-semibold
                                         cursor-pointer
                                     `}
-                            > Crie uma Conta Gratuitamente.</a>
-                        </p>
-                    )
-                    : (
-                        <p className='mt-8 text-center'>
-                            Já faz parte da nossa comunidade?
-                            <a onClick={() => setModo('login')}
-                                className={`
-                                    text-blue-500
-                                    hover:text-blue-700
-                                    font-semibold
-                                    cursor-pointer
-                                `}
-                            > Entre com as suas credenciais.</a>
-                        </p>
-                    )}
+                                >
+                                    Entre com as suas credenciais.
+                                </a>
+                            </p>
+                        )
+                }
             </div>
         </div>
     );
