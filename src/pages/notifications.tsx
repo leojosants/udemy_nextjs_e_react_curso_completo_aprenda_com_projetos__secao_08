@@ -2,14 +2,14 @@ import Layout from '../components/template/Layout';
 import useAppData from '../data/hook/useAppData';
 
 export default function Notifications() {
-  const contextData = useAppData();
+  const { switchTheme } = useAppData();
 
   return (
     <Layout
       title='Notificações'
       subtitle='Aqui você irá gerenciar suas notificações!'>
 
-      <h3>{contextData.name}</h3>
+      <button onClick={switchTheme}>Alternar Tema</button>
     </Layout>
   );
 };

@@ -1,12 +1,15 @@
+import useAppData from '@/src/data/hook/useAppData';
 import { LayoutProps } from '../interfaces/LayoutProps';
 import Content from './Content';
 import Header from './Header';
 import LateralMenu from './LateralMenu';
 
 export default function Layout(props: LayoutProps) {
+    const { theme } = useAppData();
+
     return (
         <div className={`
-            dark
+            ${theme}
             flex
             h-screen
             w-screen`}>
