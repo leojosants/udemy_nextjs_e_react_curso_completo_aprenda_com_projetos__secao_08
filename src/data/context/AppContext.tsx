@@ -6,10 +6,9 @@ const AppContext = createContext<AppContextProtocol>({ name: null });
 export function AppProvider(props: any) {
     return (
         <AppContext.Provider value={{ name: 'Teste Context API' }}>
-            {props.chidren}
+            {props.children}
         </AppContext.Provider>
     );
 };
 
 export default AppContext;
-export const AppConsumer = AppContext.Consumer;
