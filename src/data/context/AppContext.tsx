@@ -7,7 +7,7 @@ const AppContext = createContext<AppContextProps>({});
 export function AppProvider(props: any) {
     const [theme, setTheme] = useState<Theme>('dark');
 
-    function switchTheme() {
+    function changeTheme() {
         setTheme(theme === '' ? 'dark' : '');
     };
 
@@ -15,7 +15,7 @@ export function AppProvider(props: any) {
         <AppContext.Provider
             value={{
                 theme,
-                switchTheme
+                changeTheme
             }}>
 
             {props.children}

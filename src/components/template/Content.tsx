@@ -1,4 +1,4 @@
-import { ContentProps } from "../interfaces/ContentProps copy";
+import { ContentProps } from "../interfaces/ContentProps";
 
 export default function Content(props: ContentProps) {
     return (
