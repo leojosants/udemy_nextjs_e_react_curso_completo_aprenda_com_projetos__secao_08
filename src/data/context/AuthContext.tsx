@@ -52,21 +52,42 @@ export function AuthProvider(props: any) {
     };
 
     async function loginGoogle() {
-        const resp = await firebase.auth().signInWithPopup(
-            new firebase.auth.GoogleAuthProvider()
-        );
+        try {
+            setLoading(true);
 
-        configureSession(resp.user);
-        route.push('/');
+            const resp = await firebase.auth().signInWithPopup(
+                new firebase.auth.GoogleAuthProvider()
+            );
+
+            configureSession(resp.user);
+            route.push('/');
+        }
+        finally {
+            setLoading(false);
+        }
+    };
+
+    async function logout() {
+        try {
+            setLoading(true);
+
+            await firebase.auth().signOut();
+            await configureSession(null);
+        }
+        finally {
+            setLoading(false);
+        }
     };
 
     useEffect(() => {
-        const cancel = firebase.auth().onIdTokenChanged(configureSession);
-        return () => cancel();
+        if (Cookies.get('admin-template-udemy-auth')) {
+            const cancel = firebase.auth().onIdTokenChanged(configureSession);
+            return () => cancel();
+        }
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, loginGoogle }}>
+        <AuthContext.Provider value={{ user, loginGoogle, logout }}>
             {props.children}
         </AuthContext.Provider>
     );
