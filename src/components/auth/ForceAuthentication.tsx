@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Image from 'next/image';
 import loadingGif from '../../../public/images/loading.gif';
 import useAuth from '@/src/data/hook/useAuth';
@@ -11,6 +12,18 @@ export default function ForceAuthentication(props: any) {
     function renderContent() {
         return (
             <>
+                <Head >
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `
+                                if(!document.cookie?.includes('admin-template-udemy-auth=true')) {
+                                    window.location.href = '/authentication';
+                                }
+                            `
+                        }}
+                    ></script>
+                </Head>
+
                 {props.children}
             </>
         );
