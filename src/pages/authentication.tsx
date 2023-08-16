@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import AuthInput from '../components/auth/AuthInput';
 import { IconGoogle, IconWarning } from '../components/icons';
+import useAuth from '../data/hook/useAuth';
 
 export default function Authentication() {
+    const { user, loginGoogle } = useAuth();
+
     const [error, setError] = useState(null);
     const [modo, setModo] = useState<'login' | 'register'>('login');
     const [email, setEmail] = useState('');
@@ -127,7 +130,7 @@ export default function Authentication() {
                     w-full
                 `} />
 
-                <button onClick={submit}
+                <button onClick={loginGoogle}
                     className={`
                         flex
                         items-center
