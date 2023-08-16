@@ -51,6 +51,32 @@ export function AuthProvider(props: any) {
         }
     };
 
+    async function register(email: string, password: string) {
+        try {
+            setLoading(true);
+            const resp = await firebase.auth().createUserWithEmailAndPassword(email, password);
+            await configureSession(resp.user);
+            route.push('/');
+        }
+        finally {
+            setLoading(false);
+        }
+    };
+
+    async function login(email: string, password: string) {
+        try {
+            setLoading(true);
+
+            const resp = await firebase.auth().signInWithEmailAndPassword(email, password);
+
+            await configureSession(resp.user);
+            route.push('/');
+        }
+        finally {
+            setLoading(false);
+        }
+    };
+
     async function loginGoogle() {
         try {
             setLoading(true);
@@ -59,7 +85,7 @@ export function AuthProvider(props: any) {
                 new firebase.auth.GoogleAuthProvider()
             );
 
-            configureSession(resp.user);
+            await configureSession(resp.user);
             route.push('/');
         }
         finally {
@@ -89,7 +115,7 @@ export function AuthProvider(props: any) {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, loading, loginGoogle, logout }}>
+        <AuthContext.Provider value={{ user, loading, register, login, loginGoogle, logout }}>
             {props.children}
         </AuthContext.Provider>
     );

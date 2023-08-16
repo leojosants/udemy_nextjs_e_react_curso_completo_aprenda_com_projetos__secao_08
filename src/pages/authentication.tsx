@@ -4,8 +4,7 @@ import { IconGoogle, IconWarning } from '../components/icons';
 import useAuth from '../data/hook/useAuth';
 
 export default function Authentication() {
-    const { user, loginGoogle } = useAuth();
-
+    const { register, login, loginGoogle } = useAuth();
     const [error, setError] = useState(null);
     const [modo, setModo] = useState<'login' | 'register'>('login');
     const [email, setEmail] = useState('');
@@ -14,16 +13,17 @@ export default function Authentication() {
     function showError(msg: any, timeInSeconds = 5) {
         setError(msg);
         setTimeout(() => setError(null), timeInSeconds * 1000);
-
     };
 
-    function submit() {
-        if (modo === 'login') {
-            console.log('login');
-            showError('Ocorreu um erro no login!');
-        } else {
-            console.log('cadastrar');
-            showError('Ocorreu um erro no cadastro');
+    async function submit() {
+        try {
+            if (modo === 'login') {
+                await login(email, password);
+            } else {
+                await register(email, password);
+            }
+        } catch (e) {
+            showError(e?.message ?? 'Erro');
         }
     };
 
