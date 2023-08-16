@@ -3,21 +3,23 @@ import { LayoutProps } from '../interfaces/LayoutProps';
 import Content from './Content';
 import Header from './Header';
 import LateralMenu from './LateralMenu';
+import ForceAuthentication from '../auth/ForceAuthentication';
 
 export default function Layout(props: LayoutProps) {
     const { theme } = useAppData();
 
     return (
-        <div className={`
+        <ForceAuthentication>
+            <div className={`
             ${theme} 
             flex
             h-screen
             w-screen
         `}>
 
-            <LateralMenu />
+                <LateralMenu />
 
-            <div className={`
+                <div className={`
                 flex
                 flex-col
                 w-full
@@ -25,15 +27,16 @@ export default function Layout(props: LayoutProps) {
                 bg-gray-300
                 dark:bg-gray-800
             `}>
-                <Header
-                    title={props.title}
-                    subtitle={props.subtitle}
-                />
+                    <Header
+                        title={props.title}
+                        subtitle={props.subtitle}
+                    />
 
-                <Content>
-                    {props.children}
-                </Content>
+                    <Content>
+                        {props.children}
+                    </Content>
+                </div>
             </div>
-        </div>
+        </ForceAuthentication>
     );
 };

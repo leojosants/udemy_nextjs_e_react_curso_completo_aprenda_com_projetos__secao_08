@@ -83,11 +83,13 @@ export function AuthProvider(props: any) {
         if (Cookies.get('admin-template-udemy-auth')) {
             const cancel = firebase.auth().onIdTokenChanged(configureSession);
             return () => cancel();
+        } else {
+            setLoading(false);
         }
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, loginGoogle, logout }}>
+        <AuthContext.Provider value={{ user, loading, loginGoogle, logout }}>
             {props.children}
         </AuthContext.Provider>
     );
