@@ -2,6 +2,7 @@ import useAppData from '@/src/data/hook/useAppData';
 import ButtonChangeTheme from './ToggleThemeButton';
 import { HeaderProps } from '../interfaces/HeaderProps';
 import Title from './Title';
+import UserAvatar from './UserAvatar';
 
 export default function Header(props: HeaderProps) {
     const { theme, changeTheme } = useAppData();
@@ -10,13 +11,15 @@ export default function Header(props: HeaderProps) {
         <div className={`flex`}>
             <Title
                 title={props.title}
-                subtitle={props.subtitle} />
+                subtitle={props.subtitle}
+            />
 
             <div
                 className={`
                     flex
                     flex-grow
                     justify-end
+                    items-center
                 `}
             >
 
@@ -29,6 +32,8 @@ export default function Header(props: HeaderProps) {
                         />
                     )
                 }
+
+                <UserAvatar className='ml-3' />
             </div>
         </div>
     );
